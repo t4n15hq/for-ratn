@@ -72,8 +72,8 @@ export const TaskReminders: React.FC<TaskRemindersProps> = ({ tasks, onToggleTas
   return (
     <div className="mb-8 p-4 sm:p-6 bg-secondary-light/60 rounded-xl shadow-lg border border-primary-light/70 relative z-10 animate-fadeInSoft" role="region" aria-labelledby="reminders-heading">
       <div className="flex items-center mb-4">
-        <BellflowerIcon className="w-7 h-7 text-primary-dark mr-3" />
-        <h2 id="reminders-heading" className="text-2xl font-playfair font-semibold text-primary-dark">Gentle Reminders</h2>
+        <BellflowerIcon className="w-7 h-7 text-primary-dark mr-3 animate-swaying-leaf" />
+        <h2 id="reminders-heading" className="text-2xl font-playfair font-semibold text-textBase"> Gentle Reminders </h2>
       </div>
       <ul className="space-y-3">
         {tasks.map(task => {
