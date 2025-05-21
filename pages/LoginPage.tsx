@@ -61,8 +61,8 @@ const LoginPage: React.FC = () => {
         </h1>
         <p className="text-textMuted font-nunito italic">
           {isSignUp
-            ? 'a soft place to hold her days.'
-            : 'made w love, just for ratn.'}
+            ? 'Pick up where you left off.'
+            : 'Set things up, stay on track.'}
         </p>
       </div>
 
