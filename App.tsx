@@ -85,7 +85,7 @@ const App: React.FC = () => {
             <DashboardPage user={session.user} onLogout={handleLogout} />
           </main>
           <footer className="w-full max-w-4xl mx-auto py-6 text-center text-textMuted/80 text-sm font-nunito animate-fadeInSoft" style={{animationDelay: '0.4s'}}>
-            <p>&copy;  made for ratn w love. <LeafAccentIcon className="inline-block ml-1 w-3 h-3 animate-swaying-leaf" style={{ animationDuration: '3.5s' }} /></p>
+            <p>  made for ratn w love. <LeafAccentIcon className="inline-block ml-1 w-3 h-3 animate-swaying-leaf" style={{ animationDuration: '3.5s' }} /></p>
           </footer>
         </>
       )}
