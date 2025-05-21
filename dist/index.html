@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Petal - A Floral Planner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Yellow Floral Notepad Theme */
+    :root {
+      --color-page-DEFAULT: #FFFAF0; /* Floral White - soft cream */
+      
+      --color-primary-light: #FFE8A8; /* Pale Yellow Accent */
+      --color-primary-DEFAULT: #F7C948; /* Warm Marigold */
+      --color-primary-dark: #E8B938; /* Darker Marigold */
+      --color-primary-textOnPrimary: #4A4A4A; /* Dark Gray */
+
+      --color-secondary-light: #FFFACD; /* Lemon Chiffon - very pale yellow */
+      --color-secondary-DEFAULT: #FFE8A8; /* Pale Yellow */
+      --color-secondary-dark: #FDE08E; 
+      
+      --color-accent-light: #FED7D7; /* Soft Pink/Peach for subtle accents if needed */
+      --color-accent-DEFAULT: #FECACA;
+      --color-accent-dark: #FCA5A5;
+
+      --color-card-DEFAULT: #FFFFE0; /* Light Yellow - for notepad feel */
+      --color-card-hover: #FFFDE7; /* Slightly lighter yellow for hover */
+      --color-card-input: #FFE8A8; /* Changed to Pale Yellow Accent for a more distinct yellow */
+      --color-card-border: #F7C948; /* Marigold for accents/borders */
+      --color-card-line: rgba(247, 201, 72, 0.3); /* Faint marigold for notepad lines */
+
+      --color-textBase: #4A4A4A; /* Dark Gray */
+      --color-textMuted: #757575; /* Muted Gray */
+      --color-textInput: #4A4A4A;
+      --color-textPlaceholder: #A0A0A0; /* Faded Gray for placeholders */
+
+      --color-error-DEFAULT: #FED7D7; /* rose-200 (Tailwind name) */
+      --color-error-light: #FEE2E2; /* rose-100 */
+      --color-error-bg: #FFF5F5; /* rose-50 */
+      --color-error-border: #FECACA; /* rose-300 */
+      --color-error-text: #9B2C2C; /* rose-700 */
+      
+      --color-success-DEFAULT: #A7F3D0; /* Mint green (emerald-200) */
+      --color-success-textOnSuccess: #047857; /* emerald-700 */
+      --color-success-DEFAULT-hsl: 150 76% 81%; /* For animations */
+
+      --animation-task-complete: 'taskCompleteNotepad';
+      --animation-checkbox-check: 'flowerBloomCheckbox';
+      --task-item-done-opacity: '0.55';
+      --task-item-line-through-color: 'var(--color-textMuted)';
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Nunito', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto', "Helvetica Neue", 'Arial', "Noto Sans", 'sans-serif'],
+            serif: ['Playfair Display', 'Georgia', 'Cambria', "Times New Roman", 'Times', 'serif'],
+            playfair: ['Playfair Display', 'serif'],
+            nunito: ['Nunito', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              light: 'var(--color-primary-light)',
+              DEFAULT: 'var(--color-primary-DEFAULT)',
+              dark: 'var(--color-primary-dark)',
+              textOnPrimary: 'var(--color-primary-textOnPrimary)',
+            },
+            secondary: {
+              light: 'var(--color-secondary-light)',
+              DEFAULT: 'var(--color-secondary-DEFAULT)',
+              dark: 'var(--color-secondary-dark)',
+            },
+            accent: {
+              light: 'var(--color-accent-light)',
+              DEFAULT: 'var(--color-accent-DEFAULT)',
+              dark: 'var(--color-accent-dark)',
+            },
+            page: {
+              DEFAULT: 'var(--color-page-DEFAULT)',
+            },
+            card: {
+              DEFAULT: 'var(--color-card-DEFAULT)',
+              hover: 'var(--color-card-hover)',
+              input: 'var(--color-card-input)',
+              border: 'var(--color-card-border)',
+              line: 'var(--color-card-line)',
+            },
+            textBase: 'var(--color-textBase)',
+            textMuted: 'var(--color-textMuted)',
+            textInput: 'var(--color-textInput)',
+            textPlaceholder: 'var(--color-textPlaceholder)',
+            error: {
+              DEFAULT: 'var(--color-error-DEFAULT)',
+              light: 'var(--color-error-light)',
+              bg: 'var(--color-error-bg)',
+              border: 'var(--color-error-border)',
+              text: 'var(--color-error-text)',
+            },
+            success: {
+              DEFAULT: 'var(--color-success-DEFAULT)',
+              textOnSuccess: 'var(--color-success-textOnSuccess)',
+            }
+          },
+          animation: {
+            'task-complete-notepad': 'taskCompleteNotepad 0.6s ease-out forwards',
+            'flower-bloom-checkbox': 'flowerBloomCheckbox 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards',
+            'subtle-glow-yellow': 'subtleGlowYellow 2s ease-out infinite alternate',
+            'petal-float': 'petalFloat 3s ease-out forwards',
+            'gentle-bloom': 'gentleBloom 0.3s ease-out',
+            'floral-pulse': 'floralPulse 1.5s ease-in-out infinite',
+            'swaying-leaf': 'swayingLeaf 2.5s ease-in-out infinite alternate',
+            'fade-in-soft': 'fadeInSoft 0.5s ease-out forwards',
+          },
+          keyframes: {
+            taskCompleteNotepad: { 
+              '0%': { opacity: '1' },
+              '50%': { backgroundColor: 'hsla(var(--color-success-DEFAULT-hsl), 0.3)', opacity: '0.8' },
+              '100%': { backgroundColor: 'transparent', opacity: 'var(--task-item-done-opacity, 0.55)' },
+            },
+            flowerBloomCheckbox: { 
+              '0%': { transform: 'scale(0.3) rotate(-25deg)', opacity: '0' },
+              '60%': { transform: 'scale(1.15) rotate(10deg)', opacity: '1'},
+              '100%': { transform: 'scale(1) rotate(0deg)', opacity: '1'},
+            },
+            subtleGlowYellow: {
+              '0%': { textShadow: '0 0 3px hsla(44, 90%, 60%, 0.2)' }, 
+              '100%': { textShadow: '0 0 8px hsla(44, 90%, 60%, 0.4)' },
+            },
+            petalFloat: {
+              '0%': { transform: 'translateY(0) rotate(0deg)', opacity: '1' },
+              '100%': { transform: 'translateY(-80px) rotate(75deg)', opacity: '0' },
+            },
+            gentleBloom: {
+              '0%': { transform: 'scale(1)' },
+              '50%': { transform: 'scale(1.05)'},
+              '100%': { transform: 'scale(1)' },
+            },
+            floralPulse: {
+              '0%, 100%': { opacity: '0.8', transform: 'scale(1)' },
+              '50%': { opacity: '1', transform: 'scale(1.03)' },
+            },
+            swayingLeaf: {
+              '0%, 100%': { transform: 'rotate(-5deg)' },
+              '50%': { transform: 'rotate(5deg)' },
+            },
+            fadeInSoft: {
+              '0%': { opacity: '0', transform: 'translateY(5px)' },
+              '100%': { opacity: '1', transform: 'translateY(0px)' },
+            }
+          },
+          transformOrigin: {
+            'bottom-center': 'bottom center',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--color-page-DEFAULT);
+      color: var(--color-textBase);
+    }
+    .font-playfair {
+      font-family: 'Playfair Display', serif;
+    }
+    .notepad-lines {
+      background-image: linear-gradient(var(--color-card-line) 1px, transparent 1px);
+      background-size: 100% 1.75em; /* Adjust line spacing */
+      background-position-y: 0.7em; /* Adjust top offset of first line */
+    }
+    .completed-task-style {
+      font-style: italic;
+      text-decoration-line: line-through;
+      text-decoration-color: var(--task-item-line-through-color);
+      opacity: var(--task-item-done-opacity);
+      transform: skewX(-3deg);
+    }
+    /* For placeholder styling specifically */
+    input::placeholder, textarea::placeholder {
+      color: var(--color-textPlaceholder);
+      font-style: italic;
+    }
+  </style>
+
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@^2.49.7"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/assets/index-CmymiO3j.js"></script>
+</head>
+<body class="antialiased transition-colors duration-300">
+  <div id="root"></div>
+</body>
+</html><link rel="stylesheet" href="index.css">
