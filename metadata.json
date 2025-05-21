@@ -1,0 +1,6 @@
+{
+  "name": "React Task Logger",
+  "description": "A simple and visually appealing application to log and manage tasks, built with React, TypeScript, and Tailwind CSS. Users can add, view, mark tasks as complete, and delete tasks.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
